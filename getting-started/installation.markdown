@@ -173,7 +173,7 @@ following Avahi libraries:
 To make the CFEngine Server discoverable, it needs to register itself as an 
 Avahi service. Run the following command:
 
-    ```    
+    ```
         $ /var/cfengine/bin/cf-serverd -A
     ``` 
 
@@ -184,13 +184,13 @@ From this point on, the Policy Server will be discovered with the Avahi service.
 To verify that the server is visible, run the following command (requires
 `avahi-utils`):
 
-    ``` 
+    ```
         $ avahi-browse -atr | grep cfenginehub
     ``` 
 
 The sample output looks like this:
 
-    ``` 
+    ```
         eth0 IPv4 CFEngine Community 3.6.0 Policy Server on policy_hub_debian7
         _cfenginehub._tcp local
     ``` 
@@ -198,7 +198,7 @@ The sample output looks like this:
 Once the Policy Server is configured with the Avahi service, you can
 auto-bootstrap Hosts to it.
 
-    ``` 
+    ```
         $ /var/cfengine/bin/cf-agent -B :avahi
     ``` 
 
@@ -208,7 +208,7 @@ locations. Install locations vary from system to system. If Avahi is
 installed in a non-standard location (i.e. compiled from source), set the 
 `AVAHI_PATH` environmental variable to specify the path.
 
-    ``` 
+    ```
        $ AVAHI_PATH=/lib/libavahi-client.so.3 /var/cfengine/bin/cf-agent -B
     ``` 
 
@@ -217,7 +217,7 @@ address, the list of all available servers is printed and the user is asked to
 manually specify the IP address of the correct server by running the standard
 bootstrap command of cf-agent:
 
-    ``` 
+    ```
        $ /var/cfengine/bin/cf-agent --bootstrap <IP address>
     ``` 
 
