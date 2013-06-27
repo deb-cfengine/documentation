@@ -1046,8 +1046,9 @@ change in the future.
 **Description:** Setting the `preserve` menu option policy determines whether 
 to preserve file permissions on copied files.
 
-This ensures that the destination file (promiser) gets the same Unix mode as 
-the source. This also applies to remote copies.
+This ensures that the destination file (promiser) gets the same file permissions as
+the source. For local copies, all attributes are preserved, including ACLs and SELinux
+security contexts. For remote copies, only Unix mode is preserved.
 
 **Type:** [`boolean`][boolean]
 
@@ -2553,8 +2554,7 @@ on Windows (such as the Administrators group).
 is set
 
 Default behavior is to set the x flag on directories automatically if
-the r flag is specified when specifying multiple files in a single
-promise.
+the r flag is specified.
 
 **Type:** [`boolean`][boolean]
 
