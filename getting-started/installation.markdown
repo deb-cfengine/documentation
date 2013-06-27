@@ -56,17 +56,17 @@ The Community Edition is packaged using the following naming convention:
 
 1. Install the package **first** on the Policy Server, and then on each Host:
 
-```
-    [RedHat/CentOS/SUSE] $ rpm -i <package>.rpm
-    [Debian/Ubuntu]      $ dpkg -i <package>.deb
-```
+    ```
+        [RedHat/CentOS/SUSE] $ rpm -i <package>.rpm
+        [Debian/Ubuntu]      $ dpkg -i <package>.deb
+    ```
 
 2. Run the bootstrap command, **first** on the Policy Server, and then on each
 Host:
 
-````
-/var/cfengine/bin/cf-agent --bootstrap <ip address of policy server>
-````
+    ```
+        /var/cfengine/bin/cf-agent --bootstrap <ip address of policy server>
+    ```
 
 ****
 
@@ -138,25 +138,26 @@ Follow these steps to install CFEngine:
 
 1. Install packages
 
-On the designated Policy Server, install the `cfengine-nova-hub` package:
+    On the designated Policy Server, install the `cfengine-nova-hub` package:
 
-```
-    [RedHat/CentOS/SUSE] $ rpm -i <hub package>.rpm
-    [Debian/Ubuntu]      $ dpkg -i <hub package>.deb
-```
+    ```
+        [RedHat/CentOS/SUSE] $ rpm -i <hub package>.rpm
+        [Debian/Ubuntu]      $ dpkg -i <hub package>.deb
+    ```
 
-On each Host, install the `cfengine-nova` package:
+    On each Host, install the `cfengine-nova` package:
 
-```
-    [RedHat/CentOS/SUSE] $ rpm -i <agent package>.rpm
-    [Debian/Ubuntu]      $ dpkg -i <agent package>.deb
-```
+    ```
+        [RedHat/CentOS/SUSE] $ rpm -i <agent package>.rpm
+        [Debian/Ubuntu]      $ dpkg -i <agent package>.deb
+    ```
 
 2. Run the bootstrap command, **first** on the policy server and then on each
 host:
 
-``` $ /var/cfengine/bin/cf-agent --bootstrap <IP address of the Policy Server>
-```
+    ```
+        $ /var/cfengine/bin/cf-agent --bootstrap <IP address of the Policy Server>
+    ```
 
 #### Automatic bootstrapping
 
@@ -172,9 +173,9 @@ following Avahi libraries:
 To make the CFEngine Server discoverable, it needs to register itself as an 
 Avahi service. Run the following command:
 
-```    
-$ /var/cfengine/bin/cf-serverd -A
-``` 
+    ```    
+        $ /var/cfengine/bin/cf-serverd -A
+    ``` 
 
 This generates the configuration file for Avahi in `/etc/avahi/services` and 
 restarts the Avahi daemon in order to register the new service.
@@ -183,23 +184,23 @@ From this point on, the Policy Server will be discovered with the Avahi service.
 To verify that the server is visible, run the following command (requires
 `avahi-utils`):
 
-``` 
-    $ avahi-browse -atr | grep cfenginehub
-``` 
+    ``` 
+        $ avahi-browse -atr | grep cfenginehub
+    ``` 
 
 The sample output looks like this:
 
-``` 
-    eth0 IPv4 CFEngine Community 3.6.0 Policy Server on policy_hub_debian7
-    _cfenginehub._tcp local
-``` 
+    ``` 
+        eth0 IPv4 CFEngine Community 3.6.0 Policy Server on policy_hub_debian7
+        _cfenginehub._tcp local
+    ``` 
 
 Once the Policy Server is configured with the Avahi service, you can
 auto-bootstrap Hosts to it.
 
-``` 
-    $ /var/cfengine/bin/cf-agent -B :avahi
-``` 
+    ``` 
+        $ /var/cfengine/bin/cf-agent -B :avahi
+    ``` 
 
 The Hosts require Avahi libraries to be installed in order to use this 
 functionality. By default `cf-agent` looks for libraries in standard install 
@@ -207,18 +208,18 @@ locations. Install locations vary from system to system. If Avahi is
 installed in a non-standard location (i.e. compiled from source), set the 
 `AVAHI_PATH` environmental variable to specify the path.
 
-``` 
-   $ AVAHI_PATH=/lib/libavahi-client.so.3 /var/cfengine/bin/cf-agent -B
-``` 
+    ``` 
+       $ AVAHI_PATH=/lib/libavahi-client.so.3 /var/cfengine/bin/cf-agent -B
+    ``` 
 
 If more than one server is found, or if the server has more than one IP
 address, the list of all available servers is printed and the user is asked to
 manually specify the IP address of the correct server by running the standard
 bootstrap command of cf-agent:
 
-``` 
-   $ /var/cfengine/bin/cf-agent --bootstrap <IP address>
-``` 
+    ``` 
+       $ /var/cfengine/bin/cf-agent --bootstrap <IP address>
+    ``` 
 
 If only one Policy Server is found in the network, `cf-agent` performs the
 bootstrap without further manual user intervention.
