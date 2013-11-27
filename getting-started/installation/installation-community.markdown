@@ -162,11 +162,7 @@ bundle agent test
 {
   reports:                   # This is a promise type.
 
-<<<<<<< HEAD
     cfengine_3::           # This means the promise will only
-=======
-    cfefengine_3::           # This means the promise will only
->>>>>>> origin/master
                              # be kept on a CFEngine_3 system.
       "Hello World";         # This is a simple promise; it generates a report
                              # that says "Hello world".
