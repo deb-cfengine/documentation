@@ -7,9 +7,7 @@ alias: reference-functions-format.html
 tags: [reference, data functions, functions, format]
 ---
 
-**Prototype:** `format(string, ...)`
-
-**Return type:** `string`
+[%CFEngine_function_prototype(string, ...)%]
 
 **Description:** Applies sprintf-style formatting to a given `string`.
 
@@ -45,3 +43,5 @@ format *specifier* contains the *modifiers* `hLqjzt`; or if any format
           "hello my IP is... => '$(e)'";
     }
 ```
+
+**Note:** the underlying `sprintf` system call may behave differently on some platforms for some formats.  Test carefully.  For example, the format `%08s` will use spaces to fill the string up to 8 characters on libc platforms, but on Darwin (Mac OS X) it will use zeroes.  According to [SUSv4][http://pubs.opengroup.org/onlinepubs/9699919799/functions/sprintf.html] the behavior is undefined for this specific case.

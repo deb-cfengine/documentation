@@ -11,7 +11,11 @@ tags: [Examples, Tutorials, Sketch]
 application. CFEngine must be up and running in order to complete this 
 tutorial. 
 
+<<<<<<< HEAD
 ## Overview <a id="top"></a>
+=======
+## Overview 
+>>>>>>> origin/master
 In this tutorial, we want to implement the following policy: The **iscsi-initatior-utils** software package 
 should be present/installed on all hosts. Since CFEngine has a sketch that can generate this 
 policy, we will use it to deploy our policy. (Note that you may use an alternate package from your 
@@ -24,6 +28,7 @@ using the appropriate parameters and environments, and deploying them on your in
 
 This tutorial provides instructions for the following:
 
+<<<<<<< HEAD
 * [Configure and deploy a policy using sketches in the Design Center](#conf)
 
 * [Verify sketch deployment using Reports in the Mission Portal](#verify)
@@ -32,6 +37,16 @@ This tutorial provides instructions for the following:
 
 
 ## Configure and deploy a policy using sketches in the Design Center <a id="conf"></a>
+=======
+* [Configure and deploy a policy using sketches in the Design Center][Configure and Deploy a Policy Using Sketches (Enterprise Only)#Configure and deploy a policy using sketches in the Design Center]
+
+* [Verify sketch deployment using Reports in the Mission Portal][Configure and Deploy a Policy Using Sketches (Enterprise Only)#Verify sketch deployment using Reports in the Mission Portal]
+
+* [Create a query to narrow results using Report Builder in the Mission Portal][Configure and Deploy a Policy Using Sketches (Enterprise Only)#Create a query to narrow results using Report Builder in the Mission Portal]
+
+
+## Configure and deploy a policy using sketches in the Design Center
+>>>>>>> origin/master
 We will activate the **Packages** sketch which allows you to install selected software
 packages on specific hosts. A sketch must include a **parameter set** and an **environment(s)**, both of which
 we will set in the example below. Make certain that the packages you select are included in the 
@@ -91,9 +106,15 @@ If the package is removed, it is added within five minutes, and CFEngine creates
 made a _repair_. Thus, the state of the overall system is known and stable and system drift is avoided. 
 This works for 2, 20, 200, 2,000 or 20,000 servers.
 
+<<<<<<< HEAD
 [Back to top of page.](#top)
 
 ## Verify sketch deployment using Reports in the Mission Portal <a id="verify"></a>
+=======
+[Back to top of page.][Configure and Deploy a Policy Using Sketches (Enterprise Only)#Overview]
+
+## Verify sketch deployment using Reports in the Mission Portal 
+>>>>>>> origin/master
 The Mission Portal contains standard Reports to facilite systems monitoring and management. We
 will use the **Software installed** Report to verify that the Packages sketch we just activated
 has been deployed.
@@ -111,9 +132,15 @@ has been deployed.
 ![Sketch Deployment Report](Report.png)
    
    
+<<<<<<< HEAD
 [Back to top of page.](#top)
 
 ## Create a query to narrow results using Report Builder in the Mission Portal <a id="query"></a>
+=======
+[Back to top of page.][Configure and Deploy a Policy Using Sketches (Enterprise Only)#Overview]
+
+## Create a query to narrow results using Report Builder in the Mission Portal
+>>>>>>> origin/master
 Use the Report builder to create queries. In our example, we will create a query to verify that the
 Packages sketch we just activated was deployed and that our software was installed.
 
@@ -145,4 +172,8 @@ Click **Run**. The Results reveal that the policy was generated when the sketch 
 
 ![Report Builder Results](Report-builder-results.png)
 
+<<<<<<< HEAD
 [Back to top of page.](#top)
+=======
+[Back to top of page.][Configure and Deploy a Policy Using Sketches (Enterprise Only)#Overview]
+>>>>>>> origin/master

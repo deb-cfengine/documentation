@@ -29,6 +29,16 @@ The variable gives the kernel's short architecture description.
     # arch = x86_64
 ```
 
+### sys.bindir
+
+The name of the directory where CFEngine looks for its binaries..
+
+```cf3
+    # bindir = /var/cfengine/bin
+```
+
+**History:** Introduced in CFEngine 3.6
+
 ### sys.cdate
 
 The date of the system in canonical form, i.e. in the form of a class, from when the agent initialized.
@@ -51,6 +61,7 @@ A variable containing the path to the CFEngine syntax analyzer
 ### sys.cf_version
 
 The variable gives the version of the running CFEngine Core.
+<<<<<<< HEAD
 
 ```cf3
     # cf_version = 3.0.5
@@ -87,6 +98,44 @@ The variable gives the patch version of the running CFEngine Core.
     # cf_version_patch = 5
 ```
 
+=======
+
+```cf3
+    # cf_version = 3.0.5
+```
+
+### sys.cf_version_major
+
+The variable gives the major version of the running CFEngine Core.
+
+```cf3
+    # cf_version = 3.0.5
+    # cf_version_major = 3
+```
+
+**History:** Was introduced in 3.5.1, Enterprise 3.5.1.
+
+### sys.cf_version_minor
+
+The variable gives the minor version of the running CFEngine Core.
+
+```cf3
+    # cf_version = 3.0.5
+    # cf_version_minor = 0
+```
+
+**History:** Was introduced in 3.5.1, Enterprise 3.5.1.
+
+### sys.cf_version_patch
+
+The variable gives the patch version of the running CFEngine Core.
+
+```cf3
+    # cf_version = 3.0.5
+    # cf_version_patch = 5
+```
+
+>>>>>>> origin/master
 **History:** Was introduced in 3.5.1, Enterprise 3.5.1.
 
 ### sys.class
@@ -184,6 +233,19 @@ The location of the system NFS exports file.
     # exports = /etc/dfs/dfstab
 ```
 
+<<<<<<< HEAD
+=======
+### sys.failsafe_policy_path
+
+The name of the failsafe policy file.
+
+```cf3
+    # failsafe_policy_path = /var/cfengine/inputs/failsafe.cf
+```
+
+**History:** Introduced in CFEngine 3.6
+
+>>>>>>> origin/master
 ### sys.flavor, sys.flavour
 
 A variable containing an operating system identification string that is
@@ -243,6 +305,16 @@ whether this is qualified or unqualified with a domain name.
 ```cf3
     # host = myhost
 ```
+
+### sys.inputdir
+
+The name of the inputs directory where CFEngine looks for its policy files.
+
+```cf3
+    # inputdir = /var/cfengine/inputs
+```
+
+**History:** Introduced in CFEngine 3.6
 
 ### sys.interface
 
@@ -393,10 +465,44 @@ The first two octets of the IPv4 address of the system interface named as the as
 
 The first three octets of the IPv4 address of the system interface named as the associative array index, e.g. `$(ipv4_3[le0])` or `$(ipv4_3[xr1])`.
 
+<<<<<<< HEAD
+=======
+### sys.key_digest
+
+The digest of the host's cryptographic public key.
+
+```cf3
+    # sys.key_digest = MD5=bc230448c9bec14b9123443e1608ac07
+```
+
+>>>>>>> origin/master
 ### sys.last_policy_update
 
 Timestamp when last policy change was seen by host
 
+<<<<<<< HEAD
+=======
+### sys.libdir
+
+The name of the directory where CFEngine looks for its libraries.
+
+```cf3
+    # libdir = /var/cfengine/inputs/lib/3.6
+```
+
+**History:** Introduced in CFEngine 3.6
+
+### sys.local_libdir
+
+The name of the directory where CFEngine looks for its libraries, without any prefixes.
+
+```cf3
+    # local_libdir = lib/3.6
+```
+
+**History:** Introduced in CFEngine 3.6
+
+>>>>>>> origin/master
 ### sys.license_owner
 
 ```cf3
@@ -439,6 +545,16 @@ The name of the system email spool directory.
 ```cf3
     # maildir = /var/spool/mail
 ```
+
+### sys.masterdir
+
+The name of the directory on the hub where CFEngine looks for inputs to be validated and copied into `sys.inputdir`.
+
+```cf3
+    # masterdir = /var/cfengine/masterfiles
+```
+
+**History:** Introduced in CFEngine 3.6
 
 <!---
 ### sys.nova_version
@@ -500,6 +616,60 @@ The location of the system resolver file.
 ```cf3
     # resolv = /etc/resolv.conf
 ```
+
+### sys.sysday
+
+A variable containing the time since the UNIX Epoch (00:00:00 UTC, January 1,
+1970), measured in days. It is equivalent to `$(sys.systime)` divided by the
+number of seconds in a day, expressed as an integer. No time zone conversion
+is performed, the direct result of the time() system call is used. This value
+is most commonly used in the /etc/shadow file.
+
+```cf3
+   # sysday = 15656
+
+   Corresponds to Monday, November 12, 2012.
+```
+
+**History:** Introduced in CFEngine 3.6
+
+### sys.systime
+
+A variable containing the result of the time() system call, which is the
+time since the UNIX Epoch (00:00:00 UTC, January 1, 1970), measured in
+seconds. See also `$(sys.sysday)`.
+
+```cf3
+   # systime = 1352754900
+
+   Corresponds to Mon Nov 12 21:15:00 2012 UTC.
+```
+
+**History:** Introduced in CFEngine 3.6
+
+### sys.update_policy_path
+
+The name of the update policy file.
+
+```cf3
+    # update_policy_path = /var/cfengine/inputs/update.cf
+```
+
+**History:** Introduced in CFEngine 3.6
+
+### sys.uptime
+
+A variable containing the number of minutes which the system has been
+online.  (Not implemented on the Windows platform.)
+
+```cf3
+   # uptime = 69735
+
+   Equivalent uptime command output:
+    16:24:52 up 48 days, 10:15,  1 user,  load average: 0.00, 0.00, 0.00
+```
+
+**History:** Introduced in CFEngine 3.6
 
 ### sys.uqhost
 

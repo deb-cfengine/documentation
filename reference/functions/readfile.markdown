@@ -7,16 +7,11 @@ alias: reference-functions-readfile.html
 tags: [reference, io functions, functions, readfile]
 ---
 
-**Prototype:** `readfile(filename, maxbytes)`
-
-**Return type:** `string`
+[%CFEngine_function_prototype(filename, maxbytes)%]
 
 **Description:** Returns the first `maxbytes` bytes from file `filename`.
 
-**Arguments**:
-
-* `filename` : File name, in the range `"?(/.*)`
-* `maxbytes` : Maximum number of bytes to read, in the range `0,99999999999`
+[%CFEngine_function_attributes(filename, maxbytes)%]
 
 **Example:**
 
@@ -27,3 +22,9 @@ tags: [reference, io functions, functions, readfile]
         string => readfile( "/home/mark/tmp/testfile" , "33" );
 ```
 
+**Notes:**
+- At the moment, only the first 4096 bytes of the file can be retrieved.
+- To reliably read files located within /proc or /sys directories,
+`maxsize` has to be set to `0`.
+
+**History:** 4096 bytes limit and special `0` value were introduced in 3.6.0

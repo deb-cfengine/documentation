@@ -162,7 +162,11 @@ bundle agent test
 {
   reports:                   # This is a promise type.
 
+<<<<<<< HEAD
     cfengine_3::           # This means the promise will only
+=======
+    cfefengine_3::           # This means the promise will only
+>>>>>>> origin/master
                              # be kept on a CFEngine_3 system.
       "Hello World";         # This is a simple promise; it generates a report
                              # that says "Hello world".
@@ -279,5 +283,9 @@ depends on your specific policies, especially those that concern reporting.
 Everyone is a first-time user a some point. We want to make the CFEngine Enterprise installation process easy for all of our new users. 
 Before you forget your first-time experience, we would love for you to let us know how we can improve on this process.
 
+<<<<<<< HEAD
 <iframe src="https://docs.google.com/forms/d/1wnVR3HQwUNKs5fT0zf_OHjtIQxI_nd00QCFbDZOyXZk/viewform?embedded=true" width="760" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
+=======
+<iframe src="https://docs.google.com/forms/d/1wnVR3HQwUNKs5fT0zf_OHjtIQxI_nd00QCFbDZOyXZk/viewform?embedded=true" width="760" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+>>>>>>> origin/master

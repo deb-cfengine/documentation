@@ -127,7 +127,7 @@ The filename `/dir/ect/ory/.` is a special case used with the `create`
 attribute to indicate the directory named `/dir/ect/ory` and not any of
 the files under it. If you really want to specify a regular expression
 that matches any single-character filename, use `/dir/ect/ory/[\w\W]` as
-your promise regular expression (you can't use `/dir/ect/ory[^/]`, see
+your promise regular expression (you can't use `/dir/ect/ory/[^/]`, see
 below for an explanation.
 
 Depth search refers to a search for file objects that starts from the
@@ -1682,11 +1682,12 @@ deleted (that is, it "falls off the end" of the rotation).
 
 ### edit_template
 
-**Description:** The name of a special CFEngine template file to expand
+**Description:** The name of a Mustache or native-CFEngine template file to expand
 
-The template format uses inline tags to mark regions and classes. Each
-line represents an `insert_lines` promise, unless the promises are
-grouped into a block using:
+The default native-CFEngine template format (selected when
+`template_method` is `cfengine` or unspecified) uses inline tags to
+mark regions and classes. Each line represents an `insert_lines`
+promise, unless the promises are grouped into a block using:
 
 ```cf3
     [%CFEngine BEGIN %]
@@ -1694,9 +1695,10 @@ grouped into a block using:
     [%CFEngine END %]
 ```
 
-Variables, scalars and list variables are expanded within each promise.
-If lines are grouped into a block, the whole block is repeated when
-lists are expanded (see the Special Topics Guide on editing).
+Variables, scalars and list variables are expanded within each promise
+based on the current scope of the calling promise.  If lines are
+grouped into a block, the whole block is repeated when lists are
+expanded (see the Special Topics Guide on editing).
 
 If a class-context modified is used:
 
@@ -1768,7 +1770,76 @@ For example:
     [%CFEngine END %]
 ```
 
-**History:** Was introduced in 3.3.0, Nova 2.2.0 (2012)
+The Mustache template format works differently.  When you specify
+`template_method` to be `mustache`, none of the variables or classes
+in the promise's context will come through.  Instead, you pass a
+`data` variable (a "data container") to the promise's `template_data`
+attribute.  You can use `mergedata`, `readjson`, and `parsejson` to
+generate `data` variables.
+
+The full specification for Mustache templates is at http://mustache.github.io/
+
+**Example:**
+
+Save this in `test_mustache.cf`, for example.
+
+```cf3
+body common control
+{
+    bundlesequence => { test_mustache };
+}
+
+bundle agent test_mustache
+{
+  files:
+      "/tmp/myfile.txt"
+      create => "true",
+      edit_template => "$(this.promise_filename).mustache",
+      template_method => "mustache",
+      template_data => parsejson('
+{
+ "x": 100,
+ "boolean": false,
+ "list":
+  [
+   { "k": 789, "v": 0 },
+   { "k": null, "v": true },
+   { "k": -1, "v": -2 }
+  ]
+}');
+}
+```
+
+Simply, the data container's top-level keys will be used.  So this template
+(saved in `test_mustache.cf.mustache` if you follow the example):
+
+{% raw %}
+```
+x is {{x}}
+
+{{#boolean}}The boolean is true{{/boolean}}
+{{^boolean}}The boolean is false{{/boolean}}
+
+{{#list}}{{k}}={{v}}, {{/list}}
+```
+{% endraw %}
+
+Will produce this text in `/tmp/myfile.txt` when you run `cf-agent -f
+./test_mustache.cf`:
+
+
+```
+x is 100
+
+
+The boolean is false
+
+789=0, =true, -1=-2, 
+```
+
+**History:** Was introduced in 3.3.0, Nova 2.2.0 (2012).  Mustache templates were introduced in 3.6.0.
+
+**See also:** `template_method`, `template_data`, `readjson`, `parsejson`, `mergedata`, `data`
 
 ### edit_xml
 
@@ -2722,6 +2793,48 @@ ordinarily be stored in an alternative repository as
        copy_from => source,
        repository => "/var/cfengine/repository";
 ```
+
+### template_data
+
+**Description:** The data to be passed to the template (Mustache only)
+
+[%CFEngine_promise_attribute()%]
+
+**Example:**
+
+```cf3
+    files:
+
+     "/path/file"
+     ...
+     edit_template => "mytemplate.mustache",
+     template_data => parsejson('{"message":"hello"}'),
+     template_method => "mustache";
+```
+
+**See also:** `edit_template`, `template_method`
+
+### template_method
+
+**Description:** The template type.
+
+By default `cfengine` requests the native CFEngine template
+implementation, but you can use `mustache` as well.
+
+[%CFEngine_promise_attribute(cfengine)%]
+
+
+```cf3
+    files:
+
+     "/path/file"
+     ...
+     edit_template => "mytemplate.mustache",
+     template_data => parsejson('{"message":"hello"}'),
+     template_method => "mustache";
+```
+
+**See also:** `edit_template`, `template_data`
 
 ### touch
 

@@ -8,6 +8,33 @@ alias: getting-started-supported-platforms.html
 tags: [getting started, platforms, versions, support]
 ---
 
+<<<<<<< HEAD
+=======
+This pre-release of CFEngine has been rudimentarily tested on the
+following platforms:
+
+## Hub
+
+| Platform     | Versions | Architecture    | Notes                          |
+|--------------|---------:|:---------------:|--------------------------------|
+|CentOS        | 5, 6     | x86-64          | Use RHEL packages              |
+|RHEL          | 5, 6     | x86-64          |                                |
+|Ubuntu        | 10.4     | x86-64          |                                |
+
+## Hosts
+
+| Platform     | Versions | Architecture    | Notes                          |
+|--------------|---------:|:---------------:|--------------------------------|
+|CentOS        | 5, 6     | x86-64, i386    | Use RHEL packages              |
+|RHEL          | 5, 6     | x86-64, i386    |                                |
+|Ubuntu        | 10.4     | x86-64, i386    |                                |
+|Solaris       | 10       | x86-64, sparc   |                                |
+
+<!--- TODO: switch for release, remove above from stable branches
+
+
+
+>>>>>>> origin/master
 CFEngine works on a wide range of platforms, and the CFEngine team strives to 
 provide support for the platforms most frequently used by our users. We have 
 designed our internal testing procedures to divide platforms into three 
@@ -112,6 +139,11 @@ from hosts running the following versions of CFEngine:
 Some data will not be available from older hosts, and the policy you serve 
 needs to take into account hosts with different versions.
 
+<<<<<<< HEAD
+=======
+-->
+
+>>>>>>> origin/master
 ## General Legal Disclaimer
 
 Please note that CFEngine is offered on an "as is" basis without warranty of 

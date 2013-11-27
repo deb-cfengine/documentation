@@ -134,6 +134,167 @@ When the word is a function, mark it as such using `()`:
 
     **See also:** [`classify()`][classify]
 
+### Macros
+
+The documentation generator will pre-process the markdown content
+before passing it to Jekyll for the rendering. The pre-processor
+understands and replaces the macros. Macros all have the form
+
+`[%CFEngine_MACRO(parameters)%]`
+
+and need to be used as a separate line, as the entire line will be
+replaced by the pre-processor.
+
+#### Quoting policy files
+
+* `[%CFEngine_include_example(filename)%]`
+
+Injects the code from `filename` as a CFEngine code block. Comments
+are ignored, unless they start with `#@`, in which case they interrupt
+the code block and are rendered as markdown.
+
+The generator searches for `filename` in the `core/examples`
+subdirectory of WKRDIR.
+
+* `[%CFEngine_include_snippet(filename, begin_rx, end_rx [optional])%]`
+
+Searches `filename` for the first line that matches the regular
+expression `begin_rx`, and injects all lines from there until the
+first line that matches `end_rx`. If `end_rx` is omitted, all lines
+until the end of the file will be injected.
+
+The injected lines will be in a CFEngine code block.
+If the line that matches the regular expression is a comment, then
+it is excluded from the quote, otherwise it is included.
+
+#### Documenting Policy Libraries
+
+* `[%CFEngine_library_include(filename)%]`
+
+Parsers the JSON version of the CFEngine policy in `filename` and generates
+documentation from it.
+
+The generator searches for the library in the `_json` subdirectory of
+the documentation generator, and needs to be provided without file
+extension.
+
+The generates documentation parses comments between bundle/body
+prototype declaration and the opening `{` as doxygen syntax, supporting
+the following tags:
+
+    @brief text
+
+Generates the **Description** section.
+
+    @param attr text
+
+Includes `text` in the documentation for attribute `attr` within the 
+**Arguments** section.
+
+    @return text
+
+Generates the **Return value** statement.
+
+The content in `text` is then rendered as standard markdown, and can span
+multiple lines and paragraphs.
+
+#### Documenting CFEngine Syntax Elements
+
+The following macros require the syntax map to be generated via
+via `cf-promises -s` into a file `_json/syntax_map.json` within the
+`_json` subdirectory of the documentation generator.
+
+* `[%CFEngine_function_prototype(arg1, arg2, ...)%]`
+
+Renders the prototype of the function that has the same name as the
+title of the current page. Parameters `arg1` etc are used for the names
+of the parameters:
+
+```
+    **Prototype:** `title(arg1, arg2, ...)`
+    
+    **Return type:** `type`
+```
+
+Use this before a `**Description:**` section in which the behavior of the
+function as well as the individual parameters are then explained.
+
+* `[%CFEngine_function_attributes(arg1, arg2, ...)%]`
+
+Renders a list of attributes for the function that has the same name as the
+title of the current page. `arg1` etc are used for the parameter names:
+
+```
+    **Arguments:**
+    
+    * `arg1`: `type1`, in the range: `regex`
+    * `arg2`: `type2`, one of
+        * `option1`
+        * `option2`
+```
+
+Links to known keywords are generated automatically.
+
+Document the individual parameters either directly in the `**Description:**`
+section, or as a block after using this macro. You cannot use the macro if
+individual options of option-type parameters need detailed explanation.
+
+* `[%CFEngine_promise_attribute(default)%]`
+
+Renders the syntax description of the current promise attribute. The current
+markdown needs to comply with the following:
+
+The current page title is assumed to be the promise type. The current level-3
+header is assumed to be the attribute name, or - if the current promise 
+attribute is a body type - the name of the body. In a body type, the current
+level 4 header is interpreted to be the body attribute.
+
+**Example:**
+
+```
+    ---
+    title: promise_type
+    ---
+
+    ## Attributes
+
+    ### attribute1
+
+    [%CFEngine_promise_attribute(default)%]
+
+    This will document "attribute1" of "promise_type"
+
+    ### body
+
+    #### attribute1
+
+    [%CFEngine_promise_attribute(default)%]
+
+    This will document "attribute1" of "body"
+```
+
+The generated markdown is:
+
+```
+    **Type:** `type`
+
+    **Allowed input range:** `range`
+
+    * `option1`
+    * `option2`
+```
+
+If a `default` parameter is provided, then a `**Default value:**` statement
+is created.
+
+* `[%CFEngine_function_table()%]`
+
+Renders a table of built-in functions, grouped by function category.
+
+* `[%CFEngine_syntax_map(subtree)%]`
+
+Renders a nested tree of CFEngine words, starting at `subtree`.
+
 ## Content Style Guide
 
 Make sure you follow this style guide to make using CFEngine and the

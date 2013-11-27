@@ -7,15 +7,14 @@ alias: reference-functions-hashmatch.html
 tags: [reference, data functions, functions, hashmatch]
 ---
 
-**Prototype:** `hashmatch(filename, algorthm, hash)`
-
-**Return type:** `class`
+[%CFEngine_function_prototype(filename, algorithm, hash)%]
 
 **Description:** Compute the hash of file `filename` using the hash `algorithm` and test if it matches `hash`.
 
 This function may be used to determine whether a system has a particular
 version of a binary file (e.g. software patch).
 
+<<<<<<< HEAD
 **Arguments:**
 
 * `filename` : Filename to hash, in the range `"?(/.*)`
@@ -28,6 +27,11 @@ version of a binary file (e.g. software patch).
     * crypt   
 * `hash` : ASCII representation of hash for comparison, in the range
 `[a-zA-Z0-9_$(){}\[\].:]+`
+=======
+[%CFEngine_function_attributes(filename, algorithm, hash)%]
+
+`hash` is an ASCII representation of the hash for comparison.
+>>>>>>> origin/master
 
 **Example:**
 

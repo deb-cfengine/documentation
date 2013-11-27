@@ -2,10 +2,17 @@
 layout: default
 title: Installing Enterprise for Production
 categories: [Getting Started, Installation, Installing Enterprise]
+<<<<<<< HEAD
 published: 
 sorting: 40
 alias: getting-started-installation-installing-enterprise.html
 tags: [getting started, installation, enterprise]
+=======
+published: true
+sorting: 40
+alias: getting-started-installation-installing-enterprise.html
+tags: [getting started, installation, enterprise production]
+>>>>>>> origin/master
 ---
 
 These instructions describe how to install the latest version of CFEngine Enterprise in a production environment 

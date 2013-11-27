@@ -8,6 +8,7 @@ alias: getting-started-installation.html
 tags: [getting started, installation]
 ---
 
+<<<<<<< HEAD
 CFEngine comes in two versions: 
 **CFEngine Community**, a free GPL v3 open source edition, and **CFEngine Enterprise**, 
 a licensed edition for enterprises that plan to use the tool in production environments. The Enterprise edition can be evaluated for free (up to 25 servers).
@@ -26,6 +27,35 @@ advanced tutorials to help your learn the CFEngine language and functionality.
 
 All installations feature instructions and tutorials. One tutorial teaches you how to use the 
 Mission Portal console; the others help your learn the CFEngine language and functionality. 
+=======
+**IMPORTANT NOTE:** *This is a pre-release of CFEngine, intended for testing
+and showcase only. This version is not supported, not covered by service-level
+agreements (SLAs), and not intended for production environments. Do not 
+upgrade or use in conjunction with other versions at this point.*
+
+<!--- TODO: move up when no longer a pre-release
+-->
+
+CFEngine comes in two versions: 
+**CFEngine Community**, a free GPL v3 open source edition, and **CFEngine Enterprise**, 
+a licensed edition for enterprises that plan to use the tool in production environments. The Enterprise edition can be evaluated for free (up to 25 servers).
+
+The following installations are available:
+
+## CFEngine Community
+
+Install and test the latest [version of Community][Installing Community]. 
+
+In addition to 
+instructions, we include simple tutorials to get you started, followed by more 
+advanced tutorials to help your learn the CFEngine language and functionality.
+
+
+## CFEngine Enterprise
+
+All installations feature instructions and tutorials. One tutorial teaches you how to use the 
+Mission Portal console; the others help you learn the CFEngine language and functionality. 
+>>>>>>> origin/master
 
 Choose the installation that best suits your needs.
 
@@ -40,3 +70,7 @@ Choose the installation that best suits your needs.
 Install CFEngine Enterprise for [production][Installing Enterprise for Production].
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master

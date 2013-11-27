@@ -7,18 +7,14 @@ alias: reference-functions-iprange.html
 tags: [reference, communication functions, functions, iprange]
 ---
 
-**Prototype:** `iprange(range)`
-
-**Return type:** `class`
+[%CFEngine_function_prototype(range)%]
 
 **Description:** Returns whether the current host lies in the range of IP 
 addresses specified.
 
 Pattern matching based on IP addresses.
 
-**Arguments**:
-
-* `range` : IP address range syntax, in the range `.*`
+[%CFEngine_function_attributes(range)%]
 
 **Example:**
 
@@ -27,17 +23,17 @@ bundle agent example
 {
 classes:
 
-  "adhoc_group_1" expression => iprange("128.39.89.10-15");
-  "adhoc_group_2" expression => iprange("128.39.74.1/23");
+  "dmz_1" expression => iprange("128.39.89.10-15");
+  "lab_1" expression => iprange("128.39.74.1/23");
 
 reports:
 
-  adhoc_group_1::
+  dmz_1::
 
-    "Some numerology";
+    "DMZ 1 subnet";
 
-  adhoc_group_2::
+  lab_1::
 
-    "The masked warriors";
+    "Lab 1 subnet";
 }
 ```

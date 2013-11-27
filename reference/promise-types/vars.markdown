@@ -13,8 +13,6 @@ value. Variables can be scalars or lists of types `string`, `int` or `real`.
 Arrays are `associative` and use square brackets `[]` to enclose an-arbitrary 
 key.
 
-***
-
 ## Scalar Variables
 
 ### string
@@ -50,7 +48,13 @@ key.
 
      "scalar" int    => "16k";
      "ran"    int    => randomint(4,88);
-     "dim_array" int =>  readstringarray("array_name","/etc/passwd","#[^\n]*",":",10,4000);
+     "dim_array" int =>  readstringarray(
+         "array_name",
+         "/etc/passwd",
+         "#[^\n]*",
+         ":",
+         10,
+         4000);
 ```
 
 **Notes:**  
@@ -87,8 +91,6 @@ value you assign to it looks like a real number (e.g., 3, 3.1415, .17,
 Real numbers are not used in many places in CFEngine, but they are useful for 
 representing probabilities and performance data.
 
-***
-
 ## List variables
 
 Lists are specified using curly brackets `{}` that enclose a 
@@ -118,7 +120,13 @@ comma-separated list of values.
                                       ) 
                         };
 
-     "zzz"    slist  => { readstringlist("/home/mark/tmp/testlist2","#[^\n]*",",",5,4000) };
+     "zzz"    slist  => { readstringlist(
+        "/home/mark/tmp/testlist2",
+        "#[^\n]*",
+        ",",
+        5,
+        4000)
+        };
 ```
 
 **Notes:**
@@ -184,6 +192,35 @@ number (e.g., 3, 3.1415, .17, 6.02e23, -9.21e-17).
 Some [functions][Functions] return `rlist`s, and an `rlist` may 
 contain the values copied from another `slist`, `rlist`, or `ilist`. See [`policy`](#policy)
 
+## Data container variables
+
+The `data` variables are obtained from functions that return data
+containers, such as `readjson()` or `parsejson()`, or from merging
+existing data containers with `mergedata`.  They can *NOT* be
+modified, once created.
+
+Data containers can be passed to another bundle with the
+`@(varname)` notation, similarly to the list passing notation.
+
+### data
+
+**Description:** A data container structure
+
+**Type:** `data`
+
+**Allowed input range:** (arbitrary string)
+
+**Example:**  
+
+```cf3
+    vars:
+
+     "loaded1" data => readjson("myfile.json", 40000);
+     "loaded2" data => parsejson('{"key":"value"}');
+     "merged1" data => mergedata(loaded1, loaded2);
+     
+```
+
 ***
 
 ## Attributes
@@ -224,6 +261,8 @@ redefined) or they can be constant.
 The policy `constant` indicates that the variable value may not be changed. 
 The policies `free` and `overridable` are synonymous, and indicated that the 
 variable's value may be changed.
+
+`data` variables (data containers) can only have policy `constant`.
 
 The policy `ifdefined` applies only to lists and implies that unexpanded or 
 undefined lists are dropped. The default behavior is otherwise to retain this 

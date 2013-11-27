@@ -5,13 +5,15 @@ categories: [Reference, Components, cf-monitord]
 published: true
 alias: reference-components-cfmonitord.html
 tags: [Components, cf-monitord]
+keywords: [monitor]
 ---
 
-`cf-monitord` is the monitoring daemon for CFEngine. It samples probes defined 
-in policy code and attempts to learn the normal system state based on current 
-and past observations. Current estimates are made available as [special 
-variables][special variables] (e.g. [`$(mon.av_cpu)`][mon#mon.av_cpu]) to 
-[`cf-agent`][cf-agent], which may use them to inform policy decisions.
+`cf-monitord` is the monitoring daemon for CFEngine. It samples probes defined
+in policy using `measurements` type promises and attempts to learn the normal
+system state based on current and past observations. Current estimates are made
+available as [special variables][special variables] (e.g.
+[`$(mon.av_cpu)`][mon#mon.av_cpu]) to `cf-agent`, which may use them to inform
+policy decisions.
 
 `cf-monitord` keeps the promises made in `common`and `monitor` bundles, and is
 affected by  `common` and `monitor` control bodies.
@@ -126,6 +128,8 @@ CFEngine Enterprise.
 
 These values collected and analyzed by `cf-monitord` are transformed
 into agent variables in the `$(mon.`name`)` context.
+
+Note: There is no way for force a refresh of the monitored data.
 
 ## Control Promises
 

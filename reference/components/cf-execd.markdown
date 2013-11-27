@@ -5,6 +5,7 @@ categories: [Reference, Components, cf-execd]
 published: true
 alias: reference-components-cfexecd.html
 tags: [Components, cf-execd]
+keywords: [executor]
 ---
 
 `cf-execd` is the scheduling daemon for [`cf-agent`][cf-agent]. It runs 
@@ -209,6 +210,26 @@ viewed on demand. A reference to the appropriate file is given.
     mailmaxlines => "100";
     }
 ````
+
+### mailsubject
+
+**Description:** The subject in the mail sent by CFEngine.
+
+The subject can contain system variables, like for example IP address or
+architecture.
+
+**Type:** `string`
+
+**Allowed input range:** `.*`
+
+**Example:**
+
+```cf3
+    body executor control
+    {
+        mailsubject => "CFEngine report ($(sys.fqhost))";
+    }
+```
 
 ### mailto
 

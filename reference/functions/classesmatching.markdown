@@ -7,21 +7,17 @@ alias: reference-functions-classesmatching.html
 tags: [reference, utility functions, functions, classesmatching]
 ---
 
-**Prototype:** `classesmatching(regex)`
+[%CFEngine_function_prototype(regex, tag1, tag2, ...)%]
 
-**Return type:** `slist`
+**Description:** Return the list of set classes matching `regex` and any tags given.
 
-**Description:** Return the list of set classes matching `regex`.
+This function searches for the [unanchored][unanchored] regular expression in 
+the list of currently set classes (in order hard, then soft, then local to the 
+current bundle).
 
-This function searches for the regular expression in the list of currently set 
-classes (in order hard, then soft, then local to the current bundle).
+When any tags are given, only the classes with those tags are returned.
 
-**Arguments**:
-
-* `regex` : Regular expression, in the range `.*`
-
-A regular expression matching zero or more classes in the current list
-of set classes. The regular expression is [unanchored][unanchored].
+[%CFEngine_function_attributes(regex, tag1, tag2, ...)%]
 
 **Example:**  
 
@@ -37,9 +33,11 @@ of set classes. The regular expression is [unanchored][unanchored].
       vars:
           "all" slist => classesmatching(".*");
           "c" slist => classesmatching("cfengine");
+          "c_plus_plus" slist => classesmatching("cfengine", "plus");
       reports:
           "All classes = $(all)";
           "Classes matching 'cfengine' = $(c)";
+          "Classes matching 'cfengine' with the 'plus' tag = $(c_plus_plus)";
     }
 
 ```
@@ -47,3 +45,5 @@ of set classes. The regular expression is [unanchored][unanchored].
 
 **Note**: This function replaces the `allclasses.txt` static file available
 in older versions of CFEngine.
+
+**History:** Introduced in CFEngine 3.6

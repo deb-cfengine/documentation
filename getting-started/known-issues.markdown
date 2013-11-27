@@ -8,12 +8,23 @@ alias: getting-started-known-issues.html
 tags: [getting started, known issues]
 ---
 
+<<<<<<< HEAD
+=======
+
+
+* This is a pre-release, features are not complete and not fully tested
+
+<!--- TODO: move up when no longer a pre-release
+-->
+
+>>>>>>> origin/master
 CFEngine defects are managed in our [bug tracker][bug tracker]. Please report
 bugs or unexpected behavior there, following the documented guideline for new
 bug reports.
 
 The items below highlight issues that require additional awareness when starting
 with CFEngine or when upgrading from a previous version.
+<<<<<<< HEAD
 
 ### Comma in promiser/promisee declaration generates Syntax Error
 
@@ -89,3 +100,5 @@ package_method => u_generic( "$(local_software_dir)" ),
 ifvarclass => "nova_edition", 
 classes => u_if_else("bin_update_success", "bin_update_fail");
 ```
+=======
+>>>>>>> origin/master

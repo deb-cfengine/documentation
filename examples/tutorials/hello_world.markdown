@@ -16,6 +16,7 @@ CFEngine policy files by convention are suffixed with the `.cf` or `.cf3` file
 extensions. Learn more about writing CFEngine policy from the [Policy Style
 Guide][Policy Style Guide].
 
+<<<<<<< HEAD
 ## Overview <a id="top"></a>
 This tutorial provides instructions for the following:
 
@@ -27,6 +28,19 @@ This tutorial provides instructions for the following:
 
 
 ## Create hello_world <a id="policy"></a>
+=======
+## Overview 
+This tutorial provides instructions for the following:
+
+* [Create a hello_world policy file][Hello World#Create hello_world]
+
+* [Make hello_world stand alone][Hello World#Make hello_world stand alone]
+
+* [Make hello_world.cf an executable script][Hello World#Make hello_world an executable script]
+
+
+## Create hello_world 
+>>>>>>> origin/master
 
 Policies contain **bundles**, which are collections of promises. A **promise** is a declaration of
 intent. Bundles allow related promises to be grouped together, as illustrated in the tutorial below.
@@ -51,7 +65,11 @@ bundle agent hello_world
 In the policy file above, we have defined an **agent bundle** named `hello_world`. Agent
 bundles are only evaluated by **cf-agent**, the [agent component][cf-agent] of CFEngine.
 
+<<<<<<< HEAD
 This bundle [promises][Promises Types and Attributes] to [report][reports] on any [class of
+=======
+This bundle [promises][Promise Types and Attributes] to [report][reports] on any [class of
+>>>>>>> origin/master
 hosts][Classes and Decisions]. In this bundle, [$(sys.fqhost)][sys#sys.fqhost] and [$(sys.date)][sys#sys.date]
 are [special variables][Special Variables] that are automatically defined
 during an agent run and expand to the fully-qualified hostname and today's date
@@ -78,9 +96,15 @@ CFEngine uses /var because it is one of the Unix filesystems that resides locall
 Thus, CFEngine can function even if everything else fails 
 (your other filesystems, your network, and even system binaries) and possibly repair problems. 
 
+<<<<<<< HEAD
 [Back to top of page.](#top)
 
 ## Make hello_world stand alone <a id="standalone"></a>
+=======
+[Back to top of page.][Hello World#Overview]
+
+## Make hello_world stand alone 
+>>>>>>> origin/master
 
 Instead of specifying the bundlesequence on the command line (as it was above), a [body common
 control][Components and Common Control#Common Control] section can be added to
@@ -123,9 +147,15 @@ The output is shown below:
 2013-08-20T14:25:36-0500   notice: R: Hello World! I am thinkpad-w520 and it is Tue Aug 20 14:25:25 2013
 ```
 
+<<<<<<< HEAD
 [Back to top of page.](#top)
 
 ## Make hello_world an executable script <a id="executable"></a>
+=======
+[Back to top of page.][Hello World#Overview]
+
+## Make hello_world an executable script 
+>>>>>>> origin/master
 
 Add a shebang **#!** to `hello_world.cf` in order to invoke CFEngine policy as an executable script:
 
@@ -162,6 +192,10 @@ Make the policy file executable, and then run it:
 chmod +x ./hello_world.cf
 ./hello_world.cf
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 See the output below:
 
 ```
@@ -169,4 +203,8 @@ See the output below:
 # ./hello_world.cf
 2013-08-20T14:39:34-0500   notice: R: Hello World! I am thinkpad-w520 and it is Tue Aug 20 14:39:22 2013
 ```
+<<<<<<< HEAD
 [Back to top of page.](#top)
+=======
+[Back to top of page.][Hello World#Overview]
+>>>>>>> origin/master
